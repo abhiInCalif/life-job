@@ -1,0 +1,21 @@
+@(bigPipe: BigPipe, restaurant: Pagelet, weather: Pagelet)
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <script src="/assets/com/ybrikman/ping/big-pipe.js"></script>
+  </head>
+  <body>
+    @bigPipe.render { pagelets =>
+      <table>
+        <tr>
+          <td>@pagelets(restaurant.id)</td>
+        </tr>
+        <tr>
+          <td>@pagelets(weather.id)</td>
+        </tr>
+      </table>
+    }
+  </body>
+</html>
