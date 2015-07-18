@@ -1,4 +1,4 @@
-package api.weather;
+package api.restaurant;
 
 import play.api.Configuration;
 import play.api.Environment;
@@ -10,9 +10,9 @@ import scala.collection.Seq;
 /**
  * Created by yding on 7/17/15.
  */
-public class WeatherModule extends Module {
+public class RestaurantApiModule extends Module {
   @Override
   public Seq<Binding<?>> bindings(Environment environment, Configuration configuration) {
-    return seq(bind(Weather.class).to(WeatherDummy.class));
+    return seq(bind(RestaurantApi.class).to(RestaurantApiDummy.class));
   }
 }

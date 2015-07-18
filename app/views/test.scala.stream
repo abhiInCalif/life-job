@@ -8,7 +8,7 @@
   </head>
   <body>
     @bigPipe.render { pagelets =>
-      <table>
+      <table style="border: 1px solid black;">
         <tr>
           <td>@pagelets(restaurant.id)</td>
         </tr>

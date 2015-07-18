@@ -1,14 +1,13 @@
 package controllers;
 
-import api.restaurant.Restaurant;
-import api.weather.Weather;
+import api.restaurant.RestaurantApi;
+import api.weather.WeatherApi;
 import com.ybrikman.ping.javaapi.bigpipe.BigPipe;
 import com.ybrikman.ping.javaapi.bigpipe.HtmlPagelet;
 import com.ybrikman.ping.javaapi.bigpipe.HtmlStreamHelper;
 import com.ybrikman.ping.javaapi.bigpipe.Pagelet;
 import com.ybrikman.ping.javaapi.bigpipe.PageletRenderOptions;
 import javax.inject.Inject;
-import play.*;
 import play.libs.F;
 import play.mvc.*;
 
@@ -20,20 +19,20 @@ import views.stream.test;
 
 public class Application extends Controller {
 
-  private final Restaurant _restaurant;
+  private final RestaurantApi _restaurantApi;
 
-  private final Weather _weather;
+  private final WeatherApi _weatherApi;
 
   @Inject
-  public Application(Restaurant restaurant, Weather weather) {
-    _restaurant = restaurant;
-    _weather = weather;
+  public Application(RestaurantApi restaurantApi, WeatherApi weatherApi) {
+    _restaurantApi = restaurantApi;
+    _weatherApi = weatherApi;
   }
 
   public Result index() {
 
-    F.Promise<Html> restaurantPromise = _restaurant.get("").map(restaurant::apply);
-    F.Promise<Html> weatherPromise = _weather.get("").map(weather::apply);
+    F.Promise<Html> restaurantPromise = _restaurantApi.get("").map(restaurant::apply);
+    F.Promise<Html> weatherPromise = _weatherApi.get("").map(weather::apply);
 
     Pagelet restaurantPagelet = new HtmlPagelet("restaurant", restaurantPromise);
     Pagelet weatherPagelet = new HtmlPagelet("weather", weatherPromise);
